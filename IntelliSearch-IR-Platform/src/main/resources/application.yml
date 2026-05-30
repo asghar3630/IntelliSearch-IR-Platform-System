@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: IntelliSearch-IR-Platform
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/IntelliSearch
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: false
+        default_batch_fetch_size: 20
+
+  flyway:
+    enabled: false
+
+app:
+  lucene:
+    index-dir: ${LUCENE_INDEX_DIR:./lucene-index}
+  pdf:
+    # TODO: Set this to the absolute path of your Research-Articles folder
+    storage-dir: ${PDF_STORAGE_DIR:C:/path/to/your/Research-Articles}
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+logging:
+  level:
+    com.informationretrival: DEBUG
+    org.springframework.web: INFO
+    org.hibernate.SQL: WARN
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"

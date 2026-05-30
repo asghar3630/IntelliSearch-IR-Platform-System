@@ -1,0 +1,144 @@
+{
+  "info": {
+    "name": "IntelliSearch IR Platform",
+    "description": "Academic research paper information retrieval API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Search — Basic keyword",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": "{{baseUrl}}/api/search",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"deep learning\",\n  \"page\": 0,\n  \"size\": 10\n}"
+        }
+      },
+      "response": [
+        {
+          "name": "200 OK — results found",
+          "status": "OK",
+          "code": 200,
+          "body": "{\n  \"query\": \"deep learning\",\n  \"page\": 0,\n  \"size\": 10,\n  \"totalCount\": 3,\n  \"totalPages\": 1,\n  \"documents\": [\n    {\n      \"documentId\": \"DOC-001\",\n      \"title\": \"Deep Learning for Natural Language Processing: A Survey\",\n      \"authors\": \"John Smith, Maria Garcia, Wei Zhang\",\n      \"publishedYear\": 2023,\n      \"summary\": \"Comprehensive survey of deep learning techniques...\",\n      \"documentLink\": \"https://arxiv.org/abs/2301.00001\",\n      \"score\": 9.81\n    }\n  ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "Search — Phrase match",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": "{{baseUrl}}/api/search",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"\\\"retrieval augmented generation\\\"\",\n  \"page\": 0,\n  \"size\": 5\n}"
+        }
+      }
+    },
+    {
+      "name": "Search — Multi-keyword NLP + transformers",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": "{{baseUrl}}/api/search",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"transformer NLP classification\",\n  \"page\": 0,\n  \"size\": 10\n}"
+        }
+      }
+    },
+    {
+      "name": "Search — Fuzzy match (mispelled)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": "{{baseUrl}}/api/search",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"neurall network~\",\n  \"page\": 0,\n  \"size\": 10\n}"
+        }
+      }
+    },
+    {
+      "name": "Search — Boolean AND",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": "{{baseUrl}}/api/search",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"federated AND privacy\",\n  \"page\": 0,\n  \"size\": 10\n}"
+        }
+      }
+    },
+    {
+      "name": "Search — Pagination page 1",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": "{{baseUrl}}/api/search",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"machine learning\",\n  \"page\": 1,\n  \"size\": 3\n}"
+        }
+      }
+    },
+    {
+      "name": "Search — Validation error (blank query)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": "{{baseUrl}}/api/search",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"\",\n  \"page\": 0,\n  \"size\": 10\n}"
+        }
+      },
+      "response": [
+        {
+          "name": "400 Bad Request",
+          "status": "Bad Request",
+          "code": 400,
+          "body": "{\n  \"title\": \"Validation Failed\",\n  \"detail\": \"One or more fields are invalid\",\n  \"fieldErrors\": {\n    \"query\": \"Query must not be blank\"\n  }\n}"
+        }
+      ]
+    },
+    {
+      "name": "Search — Large page size error",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": "{{baseUrl}}/api/search",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"query\": \"graph neural network\",\n  \"page\": 0,\n  \"size\": 200\n}"
+        }
+      }
+    }
+  ]
+}
