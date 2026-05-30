@@ -1,0 +1,26 @@
+# IDE
+.idea/
+*.iws
+*.iml
+*.ipr
+.vscode/
+
+# Java / Maven
+IntelliSearch-IR-Platform/target/
+IntelliSearch-IR-Platform/.mvn/wrapper/maven-wrapper.jar
+IntelliSearch-IR-Platform/lucene-index/
+
+# Node / Frontend
+IntelliSearch/node_modules/
+IntelliSearch/dist/
+IntelliSearch/dist-ssr/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment (may contain secrets)
+.env.local
