@@ -1,6 +1,6 @@
 # IntelliSearch IR Platform System
 
-A full-stack academic research paper search engine powered by **Apache Lucene (BM25)**, **Spring Boot**, **React**, and **PostgreSQL**. Users can search across a corpus of research articles by keywords, phrases, or boolean queries and view results ranked by relevance.
+A full stack academic research paper search engine powered by **Apache Lucene (BM25)**, **Spring Boot**, **React**, and **PostgreSQL**. Users can search across a corpus of research articles by keywords, phrases, or boolean queries and view results ranked by relevance.
 
 ---
 
